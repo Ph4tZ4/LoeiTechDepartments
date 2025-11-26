@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>แผนกช่างยนต์ — วิทยาลัยเทคนิคเลย</title>
+  <meta name="description" content="Landing page แผนกช่างยนต์ วิทยาลัยเทคนิคเลย — เรียนจริง ทำจริง พร้อมสู่สายงานยานยนต์">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --red: #D10000;
+      --black: #000000;
+      --bg-dark: #0b0b0b;
+      --muted: #9aa0a6;
+      --max-width: 1100px;
+      --container-padding: 20px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+      background:linear-gradient(180deg,#080808 0%, #0f0f0f 100%);
+      color:#fff;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+    }
+
+    /* Layout */
+    .wrap{max-width:var(--max-width);margin:0 auto;padding:40px var(--container-padding)}
+    header{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:12px 0}
+    .brand{display:flex;align-items:center;gap:14px}
+    .logo{width:56px;height:56px;border-radius:8px;background:var(--red);display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;font-size:18px}
+    .brand h1{font-size:18px;margin:0}
+    nav{display:flex;gap:16px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;font-weight:600}
+    .cta{background:var(--red);color:#fff;padding:10px 14px;border-radius:8px;text-decoration:none;font-weight:700}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:36px;align-items:center;padding:48px 0}
+    .hero .kicker{display:inline-block;background:rgba(255,255,255,0.06);padding:6px 10px;border-radius:999px;color:var(--red);font-weight:700}
+    .hero h2{font-size:40px;line-height:1.03;margin:12px 0 16px}
+    .hero p{color:var(--muted);margin:0 0 22px}
+    .hero .hero-cts{display:flex;gap:12px}
+    .btn-outline{border:2px solid rgba(255,255,255,0.06);padding:10px 14px;border-radius:8px;color:#fff;text-decoration:none;font-weight:600}
+
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.04);
+      padding:18px;border-radius:12px
+    }
+    .stats{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+    .stat{min-width:120px}
+    .stat h3{margin:0;font-size:18px}
+    .stat p{margin:6px 0 0;color:var(--muted)}
+
+    /* Right hero image */
+    .hero-visual{width:100%;height:320px;border-radius:12px;overflow:hidden;position:relative}
+    .hero-visual img{width:100%;height:100%;object-fit:cover;display:block}
+
+    /* Sections */
+    section{padding:36px 0;border-top:1px solid rgba(255,255,255,0.03)}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .features{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+
+    /* Courses list */
+    .course{display:flex;gap:12px;align-items:flex-start}
+    .course .icon{width:48px;height:48px;border-radius:10px;background:rgba(255,255,255,0.03);display:flex;align-items:center;justify-content:center;font-weight:700}
+    .partners{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+    .partner{background:rgba(255,255,255,0.03);padding:10px 12px;border-radius:8px}
+
+    /* Testimonials */
+    .testimonial{background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));padding:18px;border-radius:12px}
+
+    /* Contact */
+    .contact-grid{display:grid;grid-template-columns:1fr 360px;gap:24px}
+    form label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
+    form input,form textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:#fff}
+    form button{margin-top:12px;background:var(--red);color:#fff;padding:10px 14px;border-radius:10px;border:none;font-weight:700}
+
+    footer{padding:28px 0;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+
+    /* Responsive */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr}
+      .hero-visual{height:260px}
+      .grid-3{grid-template-columns:1fr}
+      .contact-grid{grid-template-columns:1fr}
+      nav{display:none}
+    }
+
+    @media (max-width:520px){
+      .brand h1{font-size:16px}
+      .hero h2{font-size:28px}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo">ชย</div>
+        <div>
+          <h1>แผนกช่างยนต์ — วิทยาลัยเทคนิคเลย</h1>
+          <div style="font-size:12px;color:var(--muted)">เตรียมคนสู่สายงานยานยนต์อย่างมืออาชีพ</div>
+        </div>
+      </div>
+      <nav aria-label="เมนูหลัก">
+        <a href="#about">เกี่ยวกับ</a>
+        <a href="#courses">หลักสูตร</a>
+        <a href="#partners">ความร่วมมือ</a>
+        <a href="#contact" class="cta">ติดต่อ/สมัคร</a>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <main class="hero">
+      <div>
+        <div class="kicker">แผนกช่างยนต์</div>
+        <h2>สร้างช่างมืออาชีพ พร้อมก้าวสู่สายงานอุตสาหกรรมยานยนต์อย่างมั่นคง</h2>
+        <p>เรียนจริง ทำจริง ด้วยห้องปฏิบัติการ เครื่องมือทันสมัย และโครงการฝึกงานกับสถานประกอบการชั้นนำ เหมาะสำหรับผู้ที่ต้องการเริ่มต้นหรือยกระดับอาชีพในยานยนต์</p>
+
+        <div class="hero-cts">
+          <a class="cta" href="#contact">สมัครเรียน</a>
+          <a class="btn-outline" href="#courses">ดูหลักสูตร</a>
+        </div>
+
+        <div class="card" style="margin-top:22px">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+            <div>
+              <strong>เปิดรับสมัครทุกปีการศึกษา</strong>
+              <div style="color:var(--muted);margin-top:6px">มีทุน, โครงการทวิภาคี และโอกาสฝึกงานกับบริษัทยานยนต์</div>
+            </div>
+            <div style="text-align:right">
+              <div style="font-weight:800;font-size:20px">ปวช. / ปวส.</div>
+              <div style="color:var(--muted);font-size:13px">พื้นฐานจนถึงเชี่ยวชาญ</div>
+            </div>
+          </div>
+
+          <div class="stats">
+            <div class="stat"><h3>90%</h3><p>นักศึกษามีงานทำภายใน 6 เดือน</p></div>
+            <div class="stat"><h3>เครื่องมือทันสมัย</h3><p>อุปกรณ์สอดคล้องมาตรฐานอุตสาหกรรม</p></div>
+            <div class="stat"><h3>หลักสูตร EV/Hybrid</h3><p>เพิ่มทักษะรถไฟฟ้าและไฮบริด</p></div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="hero-visual card">
+        <!-- Replace the src with an image from your school -->
+        <img src="https://images.unsplash.com/photo-1549923746-c502d488b3ea?auto=format&fit=crop&w=1200&q=60" alt="นักเรียนช่างยนต์ปฏิบัติงาน">
+      </aside>
+    </main>
+
+    <!-- ABOUT -->
+    <section id="about" class="wrap card">
+      <h2>ทำไมต้องเลือกแผนกช่างยนต์?</h2>
+      <p style="color:var(--muted);margin-top:8px">เราเน้นทักษะจริงจากการฝึกปฏิบัติพร้อมเชื่อมต่อสถานประกอบการ ให้ผู้เรียนมีความพร้อมที่ตลาดแรงงานต้องการ</p>
+
+      <div class="features" style="margin-top:18px">
+        <div class="card">
+          <h3>หลักสูตรมาตรฐาน</h3>
+          <p style="color:var(--muted)">หลักสูตรออกแบบตามมาตรฐานอุตสาหกรรมยานยนต์ พร้อมใบรับรองเมื่อสำเร็จ</p>
+        </div>
+        <div class="card">
+          <h3>ห้องปฏิบัติการ</h3>
+          <p style="color:var(--muted)">อุปกรณ์ซ่อมบำรุง เครื่องมือวินิจฉัย และเวิร์กชอปฝึกปฏิบัติ</p>
+        </div>
+        <div class="card">
+          <h3>อาจารย์ผู้เชี่ยวชาญ</h3>
+          <p style="color:var(--muted)">ทีมสอนจากวิชาชีพจริง ที่มีประสบการณ์ทำงานในอุตสาหกรรม</p>
+        </div>
+        <div class="card">
+          <h3>โอกาสฝึกงาน</h3>
+          <p style="color:var(--muted)">เครือข่ายสถานประกอบการในประเทศและต่างประเทศ</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- COURSES -->
+    <section id="courses" class="wrap">
+      <h2>สาขาการเรียนรู้ & หลักสูตร</h2>
+      <p style="color:var(--muted);margin-top:6px">หลักสูตรที่เปิดสอน เหมาะสำหรับผู้เริ่มต้นและผู้ต้องการเพิ่มทักษะเฉพาะทาง</p>
+
+      <div style="margin-top:18px" class="grid-3">
+        <div class="card">
+          <h3>งานซ่อมรถยนต์ (Automotive Repair)</h3>
+          <p style="color:var(--muted)">การวิเคราะห์ปัญหา การซ่อมบำรุงเครื่องยนต์ ระบบส่งกำลัง ระบบเบรก และช่วงล่าง</p>
+        </div>
+        <div class="card">
+          <h3>ระบบไฟฟ้ารถยนต์ (Auto Electrical)</h3>
+          <p style="color:var(--muted)">การวินิจฉัยระบบไฟฟ้า ECU เซนเซอร์ และการสื่อสารระหว่างระบบ</p>
+        </div>
+        <div class="card">
+          <h3>เทคโนโลยียานยนต์สมัยใหม่ (EV/Hybrid)</h3>
+          <p style="color:var(--muted)">การดูแลแบตเตอรี่ ระบบมอเตอร์ไฟฟ้า และเครื่องมือวิเคราะห์พลังงาน</p>
+        </div>
+      </div>
+
+      <div style="margin-top:18px" class="grid-3">
+        <div class="card">
+          <h3>การฝึกงานเชิงปฏิบัติ</h3>
+          <p style="color:var(--muted)">โครงการฝึกงานกับศูนย์บริการและโรงงานผลิตชิ้นส่วน</p>
+        </div>
+        <div class="card">
+          <h3>โครงการนักศึกษา</h3>
+          <p style="color:var(--muted)">โครงการปลายภาคและการแข่งขันทักษะวิชาชีพ</p>
+        </div>
+        <div class="card">
+          <h3>การรับรองและใบประกาศ</h3>
+          <p style="color:var(--muted)">การรับรองฝีมือแรงงาน และประกาศนียบัตรวิชาชีพ</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PARTNERS -->
+    <section id="partners" class="wrap card">
+      <h2>ความร่วมมือกับสถานประกอบการ</h2>
+      <p style="color:var(--muted);margin-top:6px">แผนกมีความร่วมมือกับศูนย์บริการและบริษัทผู้ผลิตยานยนต์ หลายแห่ง เพื่อเปิดโอกาสเรียนรู้และฝึกงาน</p>
+
+      <div class="partners" style="margin-top:12px">
+        <div class="partner">Toyota</div>
+        <div class="partner">Honda</div>
+        <div class="partner">Nissan</div>
+        <div class="partner">Yamaha</div>
+        <div class="partner">บริษัทผลิตชิ้นส่วน</div>
+      </div>
+    </section>
+
+    <!-- WORKS / PROJECTS -->
+    <section class="wrap">
+      <h2>ผลงานนักศึกษา</h2>
+      <div style="margin-top:12px" class="grid-3">
+        <div class="card">
+          <h3>ชนะเลิศการแข่งขันทักษะวิชาชีพ</h3>
+          <p style="color:var(--muted)">ผลงานด้านการวินิจฉัยและซ่อมบำรุง</p>
+        </div>
+        <div class="card">
+          <h3>โครงงานนวัตกรรมซ่อมบำรุง</h3>
+          <p style="color:var(--muted)">โครงงานที่ช่วยลดเวลาและค่าใช้จ่ายในการซ่อม</p>
+        </div>
+        <div class="card">
+          <h3>การรับรองฝีมือแรงงานระดับชาติ</h3>
+          <p style="color:var(--muted)">นักศึกษาที่ผ่านการทดสอบได้รับการรับรอง</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="wrap card">
+      <h2>รีวิวจากศิษย์เก่า</h2>
+      <div style="margin-top:12px;display:flex;gap:12px;flex-wrap:wrap">
+        <div style="flex:1 1 300px" class="testimonial">
+          <strong>"เรียนสนุก ได้ลงมือจริง ต่อยอดสายงานได้ทันทีหลังเรียนจบ"</strong>
+          <div style="color:var(--muted);margin-top:8px">— ศิษย์เก่า รุ่น 2564</div>
+        </div>
+        <div style="flex:1 1 300px" class="testimonial">
+          <strong>"มีโอกาสฝึกงานกับศูนย์บริการที่มีชื่อเสียง ทำให้มีงานทำเร็ว"</strong>
+          <div style="color:var(--muted);margin-top:8px">— ศิษย์เก่า รุ่น 2563</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="wrap">
+      <h2>ติดต่อ / สมัคร</h2>
+      <p style="color:var(--muted);margin-top:6px">หากต้องการข้อมูลเพิ่มเติมหรือสมัครเรียน กรุณากรอกแบบฟอร์มด้านล่างหรือติดต่อช่องทางที่ให้ไว้</p>
+
+      <div class="contact-grid" style="margin-top:12px">
+        <div class="card">
+          <form id="contactForm">
+            <label for="name">ชื่อ-นามสกุล</label>
+            <input id="name" name="name" placeholder="ชื่อของคุณ" required>
+
+            <label for="phone">เบอร์โทรศัพท์</label>
+            <input id="phone" name="phone" placeholder="0X-XXX-XXXX" required>
+
+            <label for="message">ข้อความ / สอบถาม</label>
+            <textarea id="message" name="message" rows="5" placeholder="ฉันต้องการข้อมูลเกี่ยวกับ..." required></textarea>
+
+            <button type="submit">ส่งข้อความ</button>
+            <div id="formMsg" style="margin-top:12px;color:var(--muted);font-size:14px"></div>
+          </form>
+        </div>
+
+        <aside class="card" style="display:flex;flex-direction:column;gap:8px">
+          <div>
+            <strong>ที่ตั้ง</strong>
+            <div style="color:var(--muted);margin-top:6px">วิทยาลัยเทคนิคเลย จังหวัดเลย</div>
+          </div>
+          <div>
+            <strong>โทร</strong>
+            <div style="color:var(--muted);margin-top:6px">0X-XXX-XXXX</div>
+          </div>
+          <div>
+            <strong>Facebook</strong>
+            <div style="color:var(--muted);margin-top:6px">Facebook.com/แผนกช่างยนต์-วิทยาลัยเทคนิคเลย</div>
+          </div>
+          <div>
+            <strong>Google Maps</strong>
+            <div style="color:var(--muted);margin-top:6px">(ฝังแผนที่ที่นี่)</div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <footer class="wrap">
+      <div>© วิทยาลัยเทคนิคเลย — แผนกช่างยนต์</div>
+      <div style="color:var(--muted);font-size:13px">ออกแบบโดยทีมงานแผนกช่างยนต์</div>
+    </footer>
+  </div>
+
+  <script>
+    // Simple form handler (no backend) — shows a mock success message
+    document.getElementById('contactForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      var name = document.getElementById('name').value.trim();
+      var phone = document.getElementById('phone').value.trim();
+      var message = document.getElementById('message').value.trim();
+      var msgEl = document.getElementById('formMsg');
+      if(!name || !phone || !message){
+        msgEl.style.color = '#ffcccb';
+        msgEl.textContent = 'กรุณากรอกข้อมูลให้ครบถ้วน';
+        return;
+      }
+      // In production, post to a server endpoint here.
+      msgEl.style.color = '#b7ffcf';
+      msgEl.textContent = 'ขอบคุณ! ข้อมูลได้ถูกส่งแล้ว ทางแผนกจะติดต่อกลับภายใน 3-5 วันทำการ.';
+      // reset form
+      this.reset();
+    });
+  </script>
+</body>
+</html>

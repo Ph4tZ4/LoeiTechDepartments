@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>แผนกช่างเชื่อมโลหะ — วิทยาลัยเทคนิคเลย</title>
+  <meta name="description" content="Landing page แผนกช่างเชื่อมโลหะ วิทยาลัยเทคนิคเลย — เน้นปฏิบัติจริง เสริมทักษะเชื่อมมืออาชีพ ธีมโทนสีเหลืองอุตสาหกรรม">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --yellow:#ffd633;
+      --yellow-strong:#ffcb05;
+      --yellow-glow:rgba(255,214,51,0.24);
+      --bg:#060607;
+      --panel:#0d0e10;
+      --muted:#9da3ad;
+      --white:#fdfdfd;
+      --border:rgba(255,255,255,0.05);
+      --max-w:1180px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:'Kanit', 'Space Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      background:radial-gradient(circle at 10% 20%, rgba(255,214,51,0.07), transparent 55%), #040406;
+      color:var(--white);
+      -webkit-font-smoothing:antialiased;
+    }
+    .mesh{
+      position:fixed;inset:0;pointer-events:none;opacity:0.4;mix-blend-mode:screen;
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(255,214,51,0.12), transparent 35%),
+        radial-gradient(circle at 80% 0%, rgba(255,214,51,0.12), transparent 30%),
+        repeating-linear-gradient(90deg, rgba(255,255,255,0.02) 0, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 80px),
+        repeating-linear-gradient(0deg, rgba(255,255,255,0.02) 0, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 80px);
+      animation:pan 50s linear infinite;
+      filter:blur(.5px);
+    }
+    @keyframes pan{
+      from{background-position:0 0,0 0,0 0,0 0}
+      to{background-position:-800px -800px, 200px -400px, 0 -200px, -200px 0}
+    }
+    .wrap{position:relative;max-width:var(--max-w);margin:0 auto;padding:32px 24px;z-index:1}
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{
+      width:60px;height:60px;border-radius:16px;
+      background:linear-gradient(135deg,var(--yellow),#fff3a6);
+      color:#1a1a1a;font-weight:800;font-family:'Space Grotesk';display:flex;align-items:center;justify-content:center;
+      box-shadow:0 18px 40px var(--yellow-glow);
+    }
+    .brand h1{margin:0;font-size:20px}
+    nav{display:flex;gap:14px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;font-weight:600}
+    .cta{
+      padding:10px 16px;border-radius:999px;background:var(--yellow);
+      color:#161616;text-decoration:none;font-weight:800;box-shadow:0 10px 24px var(--yellow-glow);
+    }
+
+    main.hero{
+      display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,420px);gap:34px;align-items:center;
+      padding:50px 0 32px;
+    }
+    .kicker{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,0.06);color:var(--yellow);font-weight:700;font-size:14px}
+    .hero h2{font-family:'Space Grotesk';font-size:42px;margin:16px 0 12px;line-height:1.05}
+    .hero p{color:var(--muted);margin:0 0 20px}
+    .actions{display:flex;flex-wrap:wrap;gap:12px}
+    .btn-ghost{padding:10px 16px;border-radius:999px;border:1px solid var(--border);color:var(--white);text-decoration:none;font-weight:600}
+    .hero-card{
+      background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      border:1px solid var(--border);border-radius:14px;padding:10px;overflow:hidden;
+    }
+    .visual{width:100%;height:420px;border-radius:12px;overflow:hidden;position:relative;background:#050506}
+    .visual img{width:100%;height:100%;object-fit:cover;display:block;filter:contrast(1.05) saturate(1.1)}
+    .visual::after{
+      content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 30%, rgba(255,214,51,0.15), transparent 55%);
+    }
+
+    section{padding:34px 0;border-top:1px solid rgba(255,255,255,0.03)}
+    .section-header{display:flex;flex-direction:column;gap:6px;margin-bottom:18px}
+    .section-header h3{margin:0;font-size:24px}
+    .section-header p{margin:0;color:var(--muted)}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{
+      background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:18px;
+      box-shadow:0 8px 20px rgba(0,0,0,0.35);
+    }
+    .card h4{margin:0 0 8px;font-size:18px}
+    .muted{color:var(--muted)}
+    .stats{display:flex;gap:16px;flex-wrap:wrap;margin-top:18px}
+    .stat{flex:1 1 150px;border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:14px;background:rgba(255,255,255,0.01)}
+    .stat strong{display:block;font-size:26px;color:var(--yellow)}
+    .timeline{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+    .timeline-item{position:relative;padding:18px;border-radius:12px;background:rgba(255,255,255,0.02);border:1px solid var(--border)}
+    .timeline-item span{display:inline-flex;width:44px;height:44px;border-radius:10px;background:rgba(255,214,51,0.16);color:var(--yellow);align-items:center;justify-content:center;font-weight:700;margin-bottom:10px}
+
+    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+    .gallery img{width:100%;height:180px;border-radius:12px;object-fit:cover;filter:grayscale(.1);transition:transform .3s ease, box-shadow .3s ease}
+    .gallery img:hover{transform:translateY(-4px);box-shadow:0 16px 30px rgba(0,0,0,0.45)}
+
+    .achievements{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+    .achievement{padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.02)}
+
+    .testimonials{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+    .testimonial{padding:18px;border-radius:12px;background:linear-gradient(150deg, rgba(255,214,51,0.08), rgba(0,0,0,0.6));border:1px solid rgba(255,255,255,0.06)}
+
+    .contact-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,360px);gap:22px}
+    form label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
+    form input, form textarea{
+      width:100%;padding:12px;border-radius:10px;border:1px solid var(--border);background:rgba(255,255,255,0.02);color:var(--white);
+    }
+    form textarea{resize:vertical}
+    button.submit{
+      margin-top:12px;background:var(--yellow);color:#171717;font-weight:800;border:none;padding:12px 16px;border-radius:10px;cursor:pointer;box-shadow:0 12px 30px var(--yellow-glow);
+    }
+
+    footer{padding:26px 0;color:var(--muted);display:flex;justify-content:space-between;align-items:center;font-size:14px}
+
+    @media(max-width:1024px){
+      main.hero{grid-template-columns:1fr}
+      .visual{height:320px}
+    }
+    @media(max-width:720px){
+      header{flex-direction:column;align-items:flex-start}
+      nav{display:none}
+      .grid-3{grid-template-columns:1fr}
+      .contact-grid{grid-template-columns:1fr}
+      .hero h2{font-size:32px}
+    }
+  </style>
+</head>
+<body>
+  <div class="mesh" aria-hidden="true"></div>
+
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo">ชช</div>
+        <div>
+          <h1>แผนกช่างเชื่อมโลหะ — วิทยาลัยเทคนิคเลย</h1>
+          <div class="muted" style="font-size:13px">Welding • Fabrication • Inspection</div>
+        </div>
+      </div>
+      <nav aria-label="เมนู">
+        <a href="#about">จุดเด่น</a>
+        <a href="#path">เส้นทางเรียน</a>
+        <a href="#lab">ห้องปฏิบัติการ</a>
+        <a href="#contact" class="cta">ติดต่อ/สมัคร</a>
+      </nav>
+    </header>
+
+    <main class="hero">
+      <div>
+        <div class="kicker">ภาควิชาช่างเชื่อมโลหะ • สีประจำแผนก: เหลือง</div>
+        <h2>สร้างช่างเชื่อมมาตรฐานสากล สำหรับอุตสาหกรรมก่อสร้างและพลังงาน</h2>
+        <p>เรียนรู้เทคนิค SMAW, GTAW, GMAW, FCAW, การออกแบบงานโครงสร้าง รวมถึงการตรวจสอบรอยเชื่อม NDT พร้อมฝึกงานจริงกับภาคอุตสาหกรรม</p>
+
+        <div class="actions">
+          <a class="cta" href="#contact">สมัครทันที</a>
+          <a class="btn-ghost" href="#path">ดูหลักสูตร</a>
+        </div>
+
+        <div class="card" style="margin-top:22px">
+          <strong>เสริมทักษะพร้อมใบรับรอง</strong>
+          <p class="muted" style="margin-top:6px">หลักสูตรรองรับการสอบมาตรฐานฝีมือแรงงาน, AWS, และโครงการทวิภาคี</p>
+          <div class="stats">
+            <div class="stat">
+              <strong>95%</strong>
+              <span class="muted">มีงานทำในสายงาน</span>
+            </div>
+            <div class="stat">
+              <strong>12</strong>
+              <span class="muted">ห้องแลบ & เวิร์กชอป</span>
+            </div>
+            <div class="stat">
+              <strong>20+</strong>
+              <span class="muted">พันธมิตรโรงงาน</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="hero-card">
+        <div class="visual">
+          <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=70" alt="นักศึกษาเชื่อมโลหะ">
+        </div>
+      </aside>
+    </main>
+
+    <section id="about">
+      <div class="section-header">
+        <h3>จุดเด่นหลักสูตร</h3>
+        <p>ผสานงานเชื่อมโลหะเชิงปฏิบัติ การออกแบบโครงสร้าง และความปลอดภัย</p>
+      </div>
+      <div class="grid-3">
+        <div class="card">
+          <h4>ปฏิบัติจริง 70%</h4>
+          <p class="muted">ลงมือเชื่อมทุกกระบวนการ ตั้งแต่งานเชื่อมพื้นฐาน จนถึงเชื่อมท่อแรงดันสูง</p>
+        </div>
+        <div class="card">
+          <h4>เครื่องมืออุตสาหกรรม</h4>
+          <p class="muted">ครบทั้งหุ่นยนต์เชื่อม, เครื่อง Plasma, CNC Cutting และชุดตรวจสอบ NDT</p>
+        </div>
+        <div class="card">
+          <h4>เน้นความปลอดภัย</h4>
+          <p class="muted">อบรมมาตรฐานความปลอดภัยในการปฏิบัติงานก่อสร้างและอุตสาหกรรมพลังงาน</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="path">
+      <div class="section-header">
+        <h3>เส้นทางการเรียน & ใบประกาศ</h3>
+        <p>โครงสร้างหลักสูตรแบ่งขั้นตอนชัดเจน พร้อมเตรียมสอบใบประกาศวิชาชีพ</p>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <span>ปี 1</span>
+          <strong>พื้นฐานโลหะและการออกแบบ</strong>
+          <p class="muted">อ่านแบบ, วัสดุวิศวกรรม, เทคนิคการเตรียมชิ้นงาน</p>
+        </div>
+        <div class="timeline-item">
+          <span>ปี 2</span>
+          <strong>SMAW / GTAW</strong>
+          <p class="muted">ฝึกเชื่อมเหล็ก โครงสร้าง สแตนเลส และงานท่อ</p>
+        </div>
+        <div class="timeline-item">
+          <span>ปี 3</span>
+          <strong>เชื่อมขั้นสูง & หุ่นยนต์</strong>
+          <p class="muted">GMAW, FCAW, หุ่นยนต์เชื่อม และการวางแผนผลิต</p>
+        </div>
+        <div class="timeline-item">
+          <span>ต่อยอด</span>
+          <strong>ตรวจสอบรอยเชื่อม / NDT</strong>
+          <p class="muted">การทดสอบสายตา, Liquid Penetrant, Ultrasonic และเอกสารคุณภาพ</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="lab">
+      <div class="section-header">
+        <h3>ห้องปฏิบัติการ & เครื่องมือเด่น</h3>
+        <p>พร้อมรองรับโครงงาน Fabrication ทุกรูปแบบ</p>
+      </div>
+      <div class="gallery">
+        <img src="https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=900&q=60" alt="Welding Workshop">
+        <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=900&q=60" alt="Fabrication Lab">
+        <img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=900&q=60" alt="Inspection Tools">
+        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=60" alt="Robot Welding">
+      </div>
+    </section>
+
+    <section>
+      <div class="section-header">
+        <h3>ผลงาน & รางวัล</h3>
+        <p>แสดงศักยภาพนักศึกษาที่พร้อมทำงานจริง</p>
+      </div>
+      <div class="achievements">
+        <div class="achievement">
+          <strong>แชมป์การแข่งขันเชื่อมระดับภาค</strong>
+          <p class="muted">คว้าเหรียญทองรายการทักษะฝีมือแรงงาน 2567</p>
+        </div>
+        <div class="achievement">
+          <strong>โครงงานสะพานเหล็ก Mini Bridge</strong>
+          <p class="muted">ออกแบบและประกอบโครงสร้างจริง รับโหลดได้ 2 ตัน</p>
+        </div>
+        <div class="achievement">
+          <strong>โครงการท่อส่งพลังงาน</strong>
+          <p class="muted">ฝึกเชื่อมท่อ API 5L พร้อมตรวจสอบ UT/RT</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-header">
+        <h3>เสียงจากศิษย์เก่า</h3>
+        <p>แรงบันดาลใจจากผู้ที่จบไปทำงานจริง</p>
+      </div>
+      <div class="testimonials">
+        <div class="testimonial">
+          <strong>"จบไปทำงานโครงการโรงไฟฟ้าได้ทันที เพราะได้ฝึกเครื่องมือจริงครบ"</strong>
+          <div class="muted" style="margin-top:8px">— ศิษย์เก่า รุ่น 2565, Welding Supervisor</div>
+        </div>
+        <div class="testimonial">
+          <strong>"การเรียนเชื่อมท่อแรงดันสูงช่วยให้ผ่านใบรับรอง AWS 6G อย่างมั่นใจ"</strong>
+          <div class="muted" style="margin-top:8px">— ศิษย์เก่า รุ่น 2566, ช่างเชื่อมอุตสาหกรรมน้ำมัน</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="section-header">
+        <h3>ติดต่อ / สมัครเรียน</h3>
+        <p>กรอกแบบฟอร์มหรือแอดไลน์เพื่อรับข้อมูลเพิ่มเติม</p>
+      </div>
+      <div class="contact-grid">
+        <div class="card">
+          <form id="contactForm">
+            <label for="name">ชื่อ-นามสกุล</label>
+            <input id="name" name="name" placeholder="ชื่อของคุณ" required>
+
+            <label for="phone" style="margin-top:10px">เบอร์โทรศัพท์</label>
+            <input id="phone" name="phone" placeholder="0X-XXX-XXXX" required>
+
+            <label for="message" style="margin-top:10px">ข้อความ / ข้อมูลที่ต้องการ</label>
+            <textarea id="message" name="message" rows="5" placeholder="สนใจหลักสูตรหรือใบรับรองใด" required></textarea>
+
+            <button class="submit" type="submit">ส่งข้อมูล</button>
+            <a class="btn-ghost" href="#" onclick="openLine()">LINE Official</a>
+            <div id="formMsg" class="muted" style="margin-top:10px"></div>
+          </form>
+        </div>
+        <aside class="card">
+          <strong>ข้อมูลติดต่อ</strong>
+          <p class="muted" style="margin-top:8px">วิทยาลัยเทคนิคเลย — แผนกช่างเชื่อมโลหะ</p>
+          <div style="margin-top:12px">
+            <strong>โทร</strong>
+            <div class="muted" style="margin-top:6px">0X-XXX-XXXX</div>
+          </div>
+          <div style="margin-top:12px">
+            <strong>Facebook</strong>
+            <div class="muted" style="margin-top:6px">facebook.com/welding-loei-tech</div>
+          </div>
+          <div style="margin-top:12px">
+            <strong>แผนที่</strong>
+            <div class="muted" style="margin-top:6px">(ฝัง Google Maps ได้ในตำแหน่งนี้)</div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <footer>
+      <div>© วิทยาลัยเทคนิคเลย — แผนกช่างเชื่อมโลหะ</div>
+      <div>Designed by Welding Department Team</div>
+    </footer>
+  </div>
+
+  <script>
+    const form = document.getElementById('contactForm');
+    const msgEl = document.getElementById('formMsg');
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const message = document.getElementById('message').value.trim();
+      if(!name || !phone || !message){
+        msgEl.style.color = '#ff9f9f';
+        msgEl.textContent = 'กรุณากรอกข้อมูลให้ครบถ้วน';
+        return;
+      }
+      msgEl.style.color = '#c6ffd3';
+      msgEl.textContent = 'ขอบคุณ! ระบบได้รับข้อมูลเรียบร้อย แผนกจะติดต่อกลับโดยเร็วที่สุด';
+      form.reset();
+    });
+
+    function openLine(){
+      window.open('https://line.me/', '_blank');
+    }
+  </script>
+</body>
+</html>
+

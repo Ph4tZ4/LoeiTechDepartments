@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>แผนกเมคคาทรอนิกส์ — วิทยาลัยเทคนิคเลย</title>
+  <meta name="description" content="Landing page แผนกเมคคาทรอนิกส์ วิทยาลัยเทคนิคเลย — ผสานกลศาสตร์ อิเล็กทรอนิกส์ และคอมพิวเตอร์ สร้างระบบอัตโนมัติและหุ่นยนต์ ธีมสีม่วงอ่อน">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --purple-light:#c084fc;
+      --purple:#a78bfa;
+      --purple-dark:#8b5cf6;
+      --purple-glow:rgba(192, 132, 252, 0.25);
+      --bg:#0f0a1a;
+      --panel:#1a1228;
+      --muted:#c4b5fd;
+      --white:#faf5ff;
+      --border:rgba(192, 132, 252, 0.2);
+      --max-w:1180px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:'Kanit', 'Rajdhani', system-ui, -apple-system, sans-serif;
+      background:linear-gradient(180deg, #0d0815 0%, #150f22 100%);
+      color:var(--white);
+      -webkit-font-smoothing:antialiased;
+      overflow-x:hidden;
+    }
+    /* Robotic grid pattern */
+    .grid-pattern{
+      position:fixed;inset:0;pointer-events:none;opacity:0.08;z-index:0;
+      background-image: 
+        linear-gradient(rgba(192, 132, 252, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(192, 132, 252, 0.1) 1px, transparent 1px);
+      background-size:50px 50px;
+      animation:gridMove 30s linear infinite;
+    }
+    @keyframes gridMove{0%{transform:translate(0,0)} 100%{transform:translate(50px,50px)}}
+    
+    .glow-orb{
+      position:fixed;top:20%;right:10%;width:300px;height:300px;
+      background:radial-gradient(circle, rgba(192,132,252,0.15), transparent 70%);
+      border-radius:50%;filter:blur(60px);pointer-events:none;z-index:0;
+      animation:float 15s ease-in-out infinite;
+    }
+    @keyframes float{0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(20px,-20px) scale(1.1)}}
+
+    .wrap{position:relative;max-width:var(--max-w);margin:0 auto;padding:32px 24px;z-index:1}
+    
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{
+      width:60px;height:60px;border-radius:12px;
+      background:linear-gradient(135deg, var(--purple-light), var(--purple-dark));
+      color:#0d0815;font-weight:700;font-family:'Rajdhani';display:flex;align-items:center;justify-content:center;
+      box-shadow:0 0 25px var(--purple-glow);border:1px solid rgba(255,255,255,0.2);
+      font-size:20px;
+    }
+    .brand h1{margin:0;font-size:20px;letter-spacing:0.5px}
+    nav{display:flex;gap:16px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;font-weight:600;transition:color .2s}
+    nav a:hover{color:var(--purple-light)}
+    .cta{
+      padding:10px 20px;border-radius:6px;background:transparent;
+      border:1px solid var(--purple-light);color:var(--purple-light);
+      text-decoration:none;font-weight:700;transition:all .2s;
+      box-shadow:0 0 10px rgba(192,132,252,0.2);
+    }
+    .cta:hover{background:var(--purple-light);color:#0d0815;box-shadow:0 0 20px var(--purple-glow)}
+
+    /* HERO */
+    main.hero{
+      display:grid;grid-template-columns:1fr 440px;gap:40px;align-items:center;
+      padding:60px 0 40px;
+    }
+    .badge{
+      display:inline-block;padding:4px 12px;border-radius:4px;
+      background:rgba(192, 132, 252, 0.15);color:var(--purple-light);
+      font-family:'Rajdhani';font-weight:600;font-size:14px;border:1px solid rgba(192, 132, 252, 0.25);
+    }
+    .hero h2{
+      font-family:'Rajdhani';font-size:48px;margin:20px 0 16px;line-height:1.1;
+      background:linear-gradient(90deg, #fff, var(--purple-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    }
+    .hero p{color:var(--muted);font-size:16px;line-height:1.6;margin:0 0 24px;max-width:540px}
+    .actions{display:flex;gap:14px}
+    .btn-solid{
+      padding:12px 24px;border-radius:6px;background:var(--purple-light);color:#0d0815;
+      text-decoration:none;font-weight:800;font-family:'Rajdhani';
+      box-shadow:0 0 25px var(--purple-glow);transition:transform .2s;
+    }
+    .btn-solid:hover{transform:translateY(-2px)}
+    
+    .hero-visual{
+      position:relative;border-radius:16px;overflow:hidden;
+      box-shadow:0 20px 50px rgba(0,0,0,0.5);border:1px solid var(--border);
+    }
+    .hero-visual img{width:100%;height:400px;object-fit:cover;display:block;filter:brightness(0.95) contrast(1.05)}
+    .hero-overlay{
+      position:absolute;inset:0;background:linear-gradient(0deg, rgba(13,8,21,0.85), transparent 60%);
+      display:flex;flex-direction:column;justify-content:flex-end;padding:20px;
+    }
+    .pulse-dot{
+      position:absolute;top:20px;right:20px;width:12px;height:12px;background:var(--purple-light);
+      border-radius:50%;box-shadow:0 0 15px var(--purple-light);animation:pulse 2s infinite;
+    }
+    @keyframes pulse{0%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.2)} 100%{opacity:1;transform:scale(1)}}
+
+    /* SECTIONS */
+    section{padding:40px 0;border-top:1px solid rgba(255,255,255,0.03)}
+    .section-head{margin-bottom:24px}
+    .section-head h3{font-family:'Rajdhani';font-size:28px;margin:0 0 8px;color:var(--white)}
+    .section-head p{color:var(--muted);margin:0}
+
+    /* GRID & CARDS */
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .card{
+      background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:20px;
+      transition:transform .2s, border-color .2s;position:relative;overflow:hidden;
+    }
+    .card:hover{transform:translateY(-4px);border-color:var(--purple-light)}
+    .card::before{
+      content:'';position:absolute;top:0;left:0;width:100%;height:2px;
+      background:linear-gradient(90deg, transparent, var(--purple-light), transparent);
+      opacity:0;transition:opacity .3s;
+    }
+    .card:hover::before{opacity:1}
+    .card h4{margin:0 0 10px;font-size:18px;color:var(--purple-light)}
+    .card p{margin:0;color:var(--muted);font-size:14px;line-height:1.5}
+    .icon-box{
+      width:40px;height:40px;background:rgba(192, 132, 252, 0.15);border-radius:8px;
+      display:flex;align-items:center;justify-content:center;margin-bottom:14px;color:var(--purple-light);
+      border:1px solid rgba(192, 132, 252, 0.25);
+    }
+
+    /* CURRICULUM */
+    .path-container{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:24px}
+    .path-steps{display:flex;flex-direction:column;gap:16px}
+    .path-step{
+      display:flex;gap:16px;padding:16px;background:rgba(255,255,255,0.02);border-radius:10px;
+      border-left:4px solid var(--muted);transition:all .3s;
+    }
+    .path-step:hover{border-left-color:var(--purple-light);background:linear-gradient(90deg, rgba(192,132,252,0.08), transparent)}
+    .step-icon{font-family:'Rajdhani';font-size:24px;font-weight:700;color:var(--muted);opacity:0.6;min-width:40px}
+    .path-step:hover .step-icon{color:var(--purple-light);opacity:1}
+    
+    /* LAB GALLERY */
+    .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    .gallery-item{height:160px;border-radius:8px;overflow:hidden;position:relative;border:1px solid rgba(255,255,255,0.1)}
+    .gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+    .gallery-item:hover img{transform:scale(1.1)}
+    .gallery-overlay{
+      position:absolute;inset:0;background:linear-gradient(135deg, rgba(192,132,252,0.85), rgba(139,92,246,0.85));
+      display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:14px;
+      opacity:0;transition:opacity .3s;
+    }
+    .gallery-item:hover .gallery-overlay{opacity:1}
+
+    /* PROJECTS */
+    .projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+    .project-card{background:var(--panel);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+    .project-img{height:140px;overflow:hidden;position:relative}
+    .project-img img{width:100%;height:100%;object-fit:cover}
+    .project-content{padding:16px}
+    .project-content h4{margin:0 0 8px;color:var(--purple-light)}
+    .project-content p{margin:0;color:var(--muted);font-size:13px}
+
+    /* STATS */
+    .stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
+    .stat-card{
+      text-align:center;padding:20px;background:rgba(192,132,252,0.05);border-radius:10px;
+      border:1px solid rgba(192,132,252,0.15);
+    }
+    .stat-number{font-family:'Rajdhani';font-size:36px;font-weight:700;color:var(--purple-light);margin-bottom:8px}
+    .stat-label{color:var(--muted);font-size:14px}
+
+    /* CONTACT */
+    .contact-container{display:grid;grid-template-columns:2fr 1fr;gap:24px}
+    .form-box{background:var(--panel);padding:24px;border-radius:12px;border:1px solid var(--border)}
+    form label{display:block;color:var(--muted);font-size:13px;margin-bottom:6px}
+    form input, form textarea{
+      width:100%;background:#0d0815;border:1px solid #2d1f42;color:#fff;padding:12px;border-radius:6px;
+      font-family:inherit;margin-bottom:16px;
+    }
+    form input:focus, form textarea:focus{outline:none;border-color:var(--purple-light);box-shadow:0 0 8px rgba(192,132,252,0.2)}
+    button.submit-btn{
+      width:100%;padding:12px;background:var(--purple-light);color:#0d0815;border:none;border-radius:6px;
+      font-weight:800;font-family:'Rajdhani';cursor:pointer;
+    }
+
+    footer{
+      padding:32px 0;margin-top:40px;border-top:1px solid rgba(255,255,255,0.05);
+      text-align:center;color:var(--muted);font-size:14px;
+    }
+
+    @media (max-width:900px){
+      main.hero{grid-template-columns:1fr;text-align:center}
+      .hero h2{font-size:36px}
+      .actions{justify-content:center}
+      .hero-visual{display:none}
+      .grid-3, .gallery-grid, .contact-container, .projects-grid, .path-container{grid-template-columns:1fr}
+      .stats-grid{grid-template-columns:repeat(2,1fr)}
+      nav{display:none}
+    }
+  </style>
+</head>
+<body>
+  <div class="grid-pattern"></div>
+  <div class="glow-orb"></div>
+
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo">มค</div>
+        <div>
+          <h1>แผนกเมคคาทรอนิกส์</h1>
+          <div style="font-size:12px;color:var(--purple-light);opacity:0.8">Mechatronics & Robotics</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#about">เกี่ยวกับ</a>
+        <a href="#curriculum">หลักสูตร</a>
+        <a href="#lab">ห้องปฏิบัติ</a>
+        <a href="#contact" class="cta">สมัครเรียน</a>
+      </nav>
+    </header>
+
+    <main class="hero">
+      <div>
+        <div class="badge">Industry 4.0 Ready</div>
+        <h2>ผสานศาสตร์<br>สร้างระบบอัตโนมัติ</h2>
+        <p>เรียนรู้การออกแบบและควบคุมระบบอัตโนมัติที่รวมกลศาสตร์ อิเล็กทรอนิกส์ และซอฟต์แวร์เข้าด้วยกัน พัฒนาทักษะหุ่นยนต์ PLC และระบบสายการผลิต</p>
+        <div class="actions">
+          <a href="#contact" class="btn-solid">สมัครเรียนทันที</a>
+          <a href="#curriculum" style="display:flex;align-items:center;color:var(--white);text-decoration:none;font-weight:600">
+            ดูหลักสูตร <span style="margin-left:8px">→</span>
+          </a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="pulse-dot"></div>
+        <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1000&q=80" alt="Robotics Lab">
+        <div class="hero-overlay">
+          <div>
+            <strong style="color:var(--white);font-family:'Rajdhani'">ROBOTICS LAB</strong>
+            <div style="font-size:13px;color:var(--purple-light)">PLC • HMI • Automation Systems</div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <section id="about">
+      <div class="section-head">
+        <h3>ทำไมต้องเรียนเมคคาทรอนิกส์?</h3>
+        <p>สาขาที่บูรณาการความรู้หลายศาสตร์ สร้างระบบอัตโนมัติที่ทันสมัย</p>
+      </div>
+      <div class="grid-3">
+        <div class="card">
+          <div class="icon-box">🤖</div>
+          <h4>หุ่นยนต์และระบบอัตโนมัติ</h4>
+          <p>ออกแบบและควบคุมหุ่นยนต์แขนกล ระบบสายการผลิตอัตโนมัติ และระบบควบคุมด้วย PLC</p>
+        </div>
+        <div class="card">
+          <div class="icon-box">⚙️</div>
+          <h4>ระบบควบคุม</h4>
+          <p>เรียนรู้การควบคุมมอเตอร์ เซอร์โวมอเตอร์ สเต็ปเปอร์มอเตอร์ และระบบขับเคลื่อน</p>
+        </div>
+        <div class="card">
+          <div class="icon-box">💻</div>
+          <h4>โปรแกรมมิ่งและ HMI</h4>
+          <p>เขียนโปรแกรมควบคุมระบบด้วย PLC, HMI, SCADA และการเชื่อมต่อระบบ</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="curriculum">
+      <div class="section-head">
+        <h3>เส้นทางการเรียนรู้</h3>
+        <p>พัฒนาทักษะจากพื้นฐานสู่ระบบอัตโนมัติขั้นสูง</p>
+      </div>
+      <div class="path-container">
+        <div class="path-steps">
+          <div class="path-step">
+            <div class="step-icon">01</div>
+            <div>
+              <strong style="color:var(--white)">พื้นฐานเมคคาทรอนิกส์</strong>
+              <div style="color:var(--muted);font-size:14px;margin-top:4px">กลศาสตร์พื้นฐาน, วงจรอิเล็กทรอนิกส์, การเขียนโปรแกรมเบื้องต้น</div>
+            </div>
+          </div>
+          <div class="path-step">
+            <div class="step-icon">02</div>
+            <div>
+              <strong style="color:var(--white)">ระบบควบคุมมอเตอร์</strong>
+              <div style="color:var(--muted);font-size:14px;margin-top:4px">การควบคุมมอเตอร์ไฟฟ้า, เซอร์โวมอเตอร์, สเต็ปเปอร์มอเตอร์, ระบบขับเคลื่อน</div>
+            </div>
+          </div>
+          <div class="path-step">
+            <div class="step-icon">03</div>
+            <div>
+              <strong style="color:var(--white)">PLC และ HMI</strong>
+              <div style="color:var(--muted);font-size:14px;margin-top:4px">การเขียนโปรแกรม PLC (Ladder, Function Block), การออกแบบ HMI, SCADA</div>
+            </div>
+          </div>
+          <div class="path-step">
+            <div class="step-icon">04</div>
+            <div>
+              <strong style="color:var(--white)">หุ่นยนต์และระบบอัตโนมัติ</strong>
+              <div style="color:var(--muted);font-size:14px;margin-top:4px">หุ่นยนต์แขนกล, ระบบสายการผลิต, การบูรณาการระบบ, โปรเจกต์จริง</div>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="display:flex;flex-direction:column;justify-content:center;text-align:center;border-color:var(--purple-light)">
+          <div style="font-size:48px;color:var(--purple-light);font-family:'Rajdhani';font-weight:700">97%</div>
+          <div style="margin-bottom:20px;color:var(--white)">บัณฑิตมีงานทำทันที</div>
+          <div class="stats-grid" style="grid-template-columns:1fr;gap:12px;margin-top:0">
+            <div class="stat-card">
+              <div class="stat-number">50+</div>
+              <div class="stat-label">บริษัทพันธมิตร</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">100%</div>
+              <div class="stat-label">ฝึกงานจริง</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">ระดับชาติ</div>
+              <div class="stat-label">การแข่งขันหุ่นยนต์</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="lab">
+      <div class="section-head">
+        <h3>ห้องปฏิบัติการและอุปกรณ์</h3>
+        <p>เครื่องมือทันสมัยสำหรับพัฒนาระบบอัตโนมัติ</p>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=600&q=60" alt="Robotic Arm">
+          <div class="gallery-overlay">Robotic Arm Lab</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=60" alt="PLC Control">
+          <div class="gallery-overlay">PLC Control Panel</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=600&q=60" alt="Automation">
+          <div class="gallery-overlay">Automation Systems</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=60" alt="HMI">
+          <div class="gallery-overlay">HMI Interface</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <h3>ผลงานนักศึกษา</h3>
+        <p>โปรเจกต์ระบบอัตโนมัติและหุ่นยนต์</p>
+      </div>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-img">
+            <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=600&q=60" alt="Automated Conveyor">
+          </div>
+          <div class="project-content">
+            <h4>ระบบสายพานลำเลียงอัตโนมัติ</h4>
+            <p>ควบคุมด้วย PLC พร้อมระบบแยกสินค้าอัตโนมัติและติดตามด้วยเซ็นเซอร์</p>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-img">
+            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=60" alt="Pick and Place Robot">
+          </div>
+          <div class="project-content">
+            <h4>หุ่นยนต์ Pick & Place</h4>
+            <p>หุ่นยนต์แขนกลสำหรับหยิบและวางชิ้นงาน ควบคุมด้วยเซอร์โวมอเตอร์และ PLC</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="section-head">
+        <h3>สมัครเรียน / ติดต่อเรา</h3>
+      </div>
+      <div class="contact-container">
+        <div class="form-box">
+          <form id="contactForm">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+              <div>
+                <label>ชื่อ-นามสกุล</label>
+                <input type="text" id="name" required placeholder="ชื่อของคุณ">
+              </div>
+              <div>
+                <label>เบอร์โทรศัพท์</label>
+                <input type="tel" id="phone" required placeholder="0XX-XXX-XXXX">
+              </div>
+            </div>
+            <label>ข้อความ / คำถาม</label>
+            <textarea id="msg" rows="4" placeholder="สอบถามเกี่ยวกับหลักสูตรเมคคาทรอนิกส์..."></textarea>
+            <button type="submit" class="submit-btn">ส่งข้อความ</button>
+            <div id="status" style="margin-top:12px;font-size:14px"></div>
+          </form>
+        </div>
+        <div>
+          <div class="card" style="height:100%">
+            <h4>ข้อมูลติดต่อ</h4>
+            <p style="margin-bottom:12px"><strong>วิทยาลัยเทคนิคเลย</strong><br>แผนกเมคคาทรอนิกส์ อาคาร 6</p>
+            <p style="margin-bottom:12px"><strong>โทร:</strong> 042-811-XXX</p>
+            <p style="margin-bottom:12px"><strong>Facebook:</strong><br><a href="#" style="color:var(--purple-light)">แผนกเมคคาทรอนิกส์ เทคนิคเลย</a></p>
+            <hr style="border:0;border-top:1px solid rgba(255,255,255,0.1);margin:16px 0">
+            <p style="font-size:12px;color:var(--muted)">รับสมัครนักศึกษาปวช. และ ปวส. ทุกปีการศึกษา พร้อมโอกาสฝึกงานกับโรงงานอัตโนมัติ</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © 2024 แผนกเมคคาทรอนิกส์ วิทยาลัยเทคนิคเลย<br>
+      <span style="font-size:12px;opacity:0.6">Mechatronics • Robotics • Automation</span>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const n = document.getElementById('name').value;
+      const p = document.getElementById('phone').value;
+      const s = document.getElementById('status');
+      
+      if(n && p){
+        s.style.color = 'var(--purple-light)';
+        s.textContent = 'ขอบคุณ! เราได้รับข้อมูลของคุณแล้ว เจ้าหน้าที่จะติดต่อกลับเร็วๆ นี้';
+        this.reset();
+      } else {
+        s.style.color = '#ff4d4d';
+        s.textContent = 'กรุณากรอกข้อมูลให้ครบถ้วน';
+      }
+    });
+  </script>
+</body>
+</html>

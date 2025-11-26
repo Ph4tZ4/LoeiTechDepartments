@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>แผนกช่างกลโรงงาน — วิทยาลัยเทคนิคเลย</title>
+  <meta name="description" content="Landing page แผนกช่างกลโรงงาน — วิทยาลัยเทคนิคเลย (ธีม Futuristic Engineering สีส้ม-ดำ)" />
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --orange:#ff6a00;
+      --orange-glow: rgba(255,106,0,0.18);
+      --bg:#0b0b0c;
+      --card:#0f1112;
+      --muted:#9aa0a6;
+      --white:#ffffff;
+      --max-w:1200px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: 'Kanit', system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      background: linear-gradient(180deg, #070708 0%, #0b0b0c 100%);
+      color:var(--white);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    .wrap{max-width:var(--max-w);margin:0 auto;padding:28px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:8px 0}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{
+      width:62px;height:62px;border-radius:8px;
+      background:linear-gradient(135deg,var(--orange),#ff8b3a);
+      display:flex;align-items:center;justify-content:center;font-weight:800;font-family:'Orbitron';
+      color:#080808;font-size:20px;box-shadow:0 6px 24px var(--orange-glow);
+    }
+    .brand h1{margin:0;font-size:18px;font-weight:700}
+    nav{display:flex;gap:12px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;font-weight:600}
+    .cta{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px 14px;border-radius:10px;color:var(--white);text-decoration:none}
+
+    /* GRID BACKDROP */
+    .grid-back{
+      position:fixed;inset:0;pointer-events:none;mix-blend-mode:overlay;opacity:0.22;
+      background-image:
+        linear-gradient(transparent 0, transparent 86%, rgba(255,255,255,0.02) 86%),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 100% 40px, 40px 100%;
+      animation: gridMove 18s linear infinite;
+      z-index:0;
+      filter: blur(0.6px);
+    }
+    @keyframes gridMove{ from{background-position:0 0,0 0} to{background-position:0 -800px, -800px 0} }
+
+    /* HERO */
+    .hero{position:relative;display:grid;grid-template-columns:1fr 440px;gap:28px;align-items:center;padding:44px 0 28px;z-index:1}
+    .kicker{display:inline-block;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,0.03);color:var(--orange);font-weight:700}
+    .hero h2{font-family:'Orbitron';font-size:40px;margin:12px 0 8px;line-height:1.02}
+    .hero p{color:var(--muted);margin:0 0 18px;font-size:15px}
+    .actions{display:flex;gap:12px}
+    .btn-primary{
+      background:linear-gradient(90deg,var(--orange),#ff8b3a);
+      color:#070707;padding:12px 16px;border-radius:12px;font-weight:800;text-decoration:none;box-shadow:0 12px 40px var(--orange-glow);
+      transition:transform .14s ease, box-shadow .14s ease;
+    }
+    .btn-primary:hover{transform:translateY(-4px);box-shadow:0 20px 60px rgba(255,117,44,0.24)}
+    .btn-ghost{padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);text-decoration:none;color:var(--white);display:inline-flex;align-items:center}
+
+    /* HERO VISUAL */
+    .hero-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;padding:10px;border:1px solid rgba(255,255,255,0.04);overflow:hidden}
+    .visual{width:100%;height:420px;border-radius:10px;position:relative;background:#0a0a0b;display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .visual img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(.05) contrast(1.02)}
+
+    /* glow lines */
+    .glow-line{
+      position:absolute;left:0;right:0;height:2px;background:linear-gradient(90deg, transparent, var(--orange), transparent);opacity:0.9;transform:translateY(0);mix-blend-mode:screen;
+    }
+    .glow-line.line1{top:18%;}
+    .glow-line.line2{top:70%;opacity:0.7}
+
+    /* cards / grids */
+    section{padding:32px 0;border-top:1px solid rgba(255,255,255,0.02);z-index:1}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+    .card h3{margin:0 0 8px}
+    .muted{color:var(--muted);font-size:14px}
+
+    /* features stepper */
+    .steps{display:flex;flex-direction:column;gap:12px}
+    .step{display:flex;gap:12px;align-items:flex-start}
+    .icon{
+      min-width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--orange);font-family:'Orbitron';
+      box-shadow:0 8px 28px rgba(0,0,0,0.4);
+    }
+
+    /* lab gallery */
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .gallery img{width:100%;height:160px;object-fit:cover;border-radius:10px;display:block;transition:transform .35s ease, box-shadow .35s ease}
+    .gallery img:hover{transform:translateY(-6px);box-shadow:0 18px 50px rgba(0,0,0,0.6)}
+
+    /* testimonials */
+    .test-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .testimonial{padding:16px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.008));border:1px solid rgba(255,255,255,0.02)}
+
+    /* contact */
+    .contact-grid{display:grid;grid-template-columns:1fr 360px;gap:18px}
+    form label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
+    input,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--white)}
+    button.submit{background:linear-gradient(90deg,var(--orange),#ff8b3a);color:#070707;padding:12px 14px;border-radius:10px;border:none;font-weight:800;cursor:pointer}
+
+    footer{padding:22px 0;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+
+    /* small */
+    @media (max-width:1000px){
+      .hero{grid-template-columns:1fr;gap:18px}
+      .visual{height:300px}
+      .grid-3, .gallery{grid-template-columns:1fr}
+      .contact-grid{grid-template-columns:1fr}
+      nav{display:none}
+    }
+
+    /* small screen tweaks */
+    @media (max-width:520px){
+      .brand h1{font-size:15px}
+      .hero h2{font-size:26px}
+      .logo{width:52px;height:52px;font-size:18px}
+    }
+
+    /* subtle entry animations */
+    .reveal{opacity:0;transform:translateY(10px);animation:reveal .7s ease forwards}
+    .reveal.delay-1{animation-delay:.08s}
+    .reveal.delay-2{animation-delay:.16s}
+    .reveal.delay-3{animation-delay:.24s}
+    @keyframes reveal{to{opacity:1;transform:none}}
+
+    /* small glowing pulse */
+    .pulse{box-shadow:0 0 12px rgba(255,106,0,0.12), 0 6px 28px rgba(255,106,0,0.06);border-radius:10px}
+  </style>
+</head>
+<body>
+  <div class="grid-back" aria-hidden="true"></div>
+
+  <div class="wrap">
+    <header class="reveal">
+      <div class="brand">
+        <div class="logo">ชก</div>
+        <div>
+          <h1>แผนกช่างกลโรงงาน — วิทยาลัยเทคนิคเลย</h1>
+          <div style="font-size:13px;color:var(--muted)">Industrial • CNC • Automation</div>
+        </div>
+      </div>
+
+      <nav aria-label="เมนู">
+        <a href="#about">เกี่ยวกับ</a>
+        <a href="#courses">หลักสูตร</a>
+        <a href="#lab">ห้องปฏิบัติการ</a>
+        <a href="#contact" class="cta">สมัคร/ติดต่อ</a>
+      </nav>
+    </header>
+
+    <main class="hero">
+      <div>
+        <div class="kicker reveal delay-1">แผนกช่างกลโรงงาน</div>
+        <h2 class="reveal delay-2">ควบคุมอนาคตการผลิต ด้วยเครื่องจักรกลอุตสาหกรรม</h2>
+        <p class="reveal delay-3">เรียนรู้การผลิตชิ้นส่วนโลหะตั้งแต่พื้นฐานจนถึง CNC, CAD/CAM และระบบอัตโนมัติ พร้อมฝึกงานจริงกับภาคอุตสาหกรรม</p>
+
+        <div style="margin-top:18px" class="actions reveal delay-3">
+          <a class="btn-primary pulse" href="#contact">สมัครเรียนทันที</a>
+          <a class="btn-ghost" href="#courses">ดูหลักสูตร</a>
+        </div>
+
+        <div style="margin-top:22px" class="card reveal delay-3">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+            <div>
+              <strong>โอกาสงานสูง • ทักษะจริงจากเครื่องจริง</strong>
+              <div class="muted" style="margin-top:6px">หลักสูตรสอดคล้องตลาดแรงงาน พร้อมโปรแกรมฝึกงานและประกาศนียบัตรอาชีพ</div>
+            </div>
+            <div style="text-align:right">
+              <div style="font-weight:800;font-size:20px">CNC • CAM • Automation</div>
+              <div class="muted" style="font-size:13px">พื้นฐาน → ขั้นสูง → พร้อมทำงาน</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="hero-card reveal">
+        <div class="visual">
+          <div class="glow-line line1"></div>
+          <img src="https://images.unsplash.com/photo-1581093588401-3a2b0c2b9a3f?auto=format&fit=crop&w=1200&q=70" alt="CNC Machine">
+          <div class="glow-line line2"></div>
+        </div>
+      </aside>
+    </main>
+
+    <!-- ABOUT -->
+    <section id="about" class="reveal">
+      <div class="card">
+        <h3>ทำไมต้องเรียนช่างกลโรงงานที่นี่?</h3>
+        <p class="muted" style="margin-top:8px">เราให้การฝึกปฏิบัติจริงบนเครื่องจักรที่ใช้ในโรงงาน ตั้งแต่เครื่องกลึง เครื่องกัด ไปจนถึงเครื่อง CNC และระบบอัตโนมัติ เพื่อให้ผู้เรียนพร้อมทำงานได้ทันที</p>
+        <div style="display:flex;gap:12px;margin-top:12px;flex-wrap:wrap">
+          <div class="card" style="flex:1;min-width:220px">
+            <strong>การเรียนเชิงปฏิบัติ</strong>
+            <div class="muted">สัดส่วนการปฏิบัติมากกว่า 70%</div>
+          </div>
+          <div class="card" style="flex:1;min-width:220px">
+            <strong>เครื่องจักรจริง</strong>
+            <div class="muted">CNC Lathe • Milling • CAD/CAM Lab</div>
+          </div>
+          <div class="card" style="flex:1;min-width:220px">
+            <strong>เครือข่ายอุตสาหกรรม</strong>
+            <div class="muted">ฝึกงานและโอกาสทำงานกับโรงงานพันธมิตร</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COURSES -->
+    <section id="courses" class="reveal">
+      <h3>หลักสูตร & เส้นทางการเรียน</h3>
+      <p class="muted" style="margin-top:6px">แบ่งเป็นขั้นตอนชัดเจน ตั้งแต่พื้นฐานจนถึงการควบคุมเครื่องจักร CNC และงานออกแบบด้วย CAD/CAM</p>
+
+      <div style="margin-top:16px" class="card steps">
+        <div class="step">
+          <div class="icon">01</div>
+          <div>
+            <strong>Year 1 — พื้นฐานช่างกล</strong>
+            <div class="muted">วัสดุ งานกลึง งานกัด การอ่านแบบ</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="icon">02</div>
+          <div>
+            <strong>Year 2 — เครื่องมือและเทคนิค</strong>
+            <div class="muted">เครื่องกลึงขนาดใหญ่ เครื่องกัด เครื่องวัดละเอียด</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="icon">03</div>
+          <div>
+            <strong>Year 3 — CNC & CAD/CAM</strong>
+            <div class="muted">การตั้งโปรแกรม CNC, CAM, การออกแบบชิ้นงานในโปรแกรม</div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="icon">04</div>
+          <div>
+            <strong>ต่อเนื่อง — Automation และ QC</strong>
+            <div class="muted">ระบบอัตโนมัติในสายการผลิตและการตรวจสอบคุณภาพ</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LAB -->
+    <section id="lab" class="reveal">
+      <h3>ห้องปฏิบัติการ & เครื่องมือ</h3>
+      <p class="muted" style="margin-top:6px">ตัวอย่างเครื่องจักรที่ใช้ฝึกจริง</p>
+
+      <div style="margin-top:12px" class="gallery">
+        <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1200&q=60" alt="Lathe">
+        <img src="https://images.unsplash.com/photo-1542834369-f10ebf06d3cb?auto=format&fit=crop&w=1200&q=60" alt="Milling">
+        <img src="https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=1200&q=60" alt="CNC">
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="reveal">
+      <h3>ผลงานนักศึกษา</h3>
+      <div style="margin-top:12px" class="grid-3">
+        <div class="card">
+          <strong>แม่พิมพ์และชิ้นส่วน</strong>
+          <div class="muted" style="margin-top:8px">ผลิตชิ้นส่วนความแม่นยำสูงสำหรับอุตสาหกรรม</div>
+        </div>
+        <div class="card">
+          <strong>โครงงาน CNC</strong>
+          <div class="muted" style="margin-top:8px">ตั้งโปรแกรมและผลิตชิ้นงานตามแบบจริง</div>
+        </div>
+        <div class="card">
+          <strong>การแข่งขันทักษะ</strong>
+          <div class="muted" style="margin-top:8px">นักศึกษาได้รับรางวัลระดับจังหวัดและประเทศ</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="reveal">
+      <h3>รีวิวศิษย์เก่า</h3>
+      <div style="margin-top:10px" class="test-grid">
+        <div class="testimonial">
+          <strong>\"ได้ทำงานกับเครื่องจริงทันทีหลังจบ\"</strong>
+          <div class="muted" style="margin-top:8px">— ศิษย์เก่า รุ่น 2562, ช่าง CNC</div>
+        </div>
+        <div class="testimonial">
+          <strong>\"ทักษะที่ได้สามารถต่อยอดเป็นธุรกิจได้\"</strong>
+          <div class="muted" style="margin-top:8px">— ศิษย์เก่า รุ่น 2564, เจ้าของกิจการ</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="reveal">
+      <h3>ติดต่อ / สมัคร</h3>
+      <p class="muted" style="margin-top:6px">กรอกข้อมูลหรือสแกน QR เพื่อสอบถามเพิ่มเติม</p>
+
+      <div style="margin-top:12px" class="contact-grid">
+        <div class="card">
+          <form id="form">
+            <label for="n">ชื่อ-นามสกุล</label>
+            <input id="n" name="name" required placeholder="ชื่อของคุณ">
+
+            <label for="ph" style="margin-top:8px">เบอร์โทร</label>
+            <input id="ph" name="phone" required placeholder="0X-XXX-XXXX">
+
+            <label for="msg" style="margin-top:8px">ข้อความ</label>
+            <textarea id="msg" rows="5" placeholder="ต้องการข้อมูลเกี่ยวกับ..." required></textarea>
+
+            <div style="display:flex;gap:8px;margin-top:10px">
+              <button class="submit" type="submit">ส่งคำขอ</button>
+              <a class="btn-ghost" href="#" onclick="openLine()">LINE</a>
+            </div>
+
+            <div id="formMsg" class="muted" style="margin-top:10px"></div>
+          </form>
+        </div>
+
+        <aside class="card">
+          <strong>ที่ตั้ง</strong>
+          <div class="muted" style="margin-top:8px">วิทยาลัยเทคนิคเลย — แผนกช่างกลโรงงาน</div>
+
+          <div style="margin-top:10px">
+            <strong>โทร</strong>
+            <div class="muted" style="margin-top:6px">0X-XXX-XXXX</div>
+          </div>
+
+          <div style="margin-top:10px">
+            <strong>Facebook</strong>
+            <div class="muted" style="margin-top:6px">facebook.com/แผนกช่างกล-วิทยาลัยเทคนิคเลย</div>
+          </div>
+
+          <div style="margin-top:12px">
+            <strong>แผนที่</strong>
+            <div class="muted" style="margin-top:6px">(ฝัง Google Maps ที่นี่)</div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <footer class="reveal">
+      <div>© วิทยาลัยเทคนิคเลย — แผนกช่างกลโรงงาน</div>
+      <div class="muted">ออกแบบโดยทีมงานแผนกช่างกล</div>
+    </footer>
+  </div>
+
+  <script>
+    // simple client-side form behavior (mock)
+    document.getElementById('form').addEventListener('submit', function(e){
+      e.preventDefault();
+      const n = document.getElementById('n').value.trim();
+      const ph = document.getElementById('ph').value.trim();
+      const msg = document.getElementById('msg').value.trim();
+      const out = document.getElementById('formMsg');
+      if(!n || !ph || !msg){
+        out.style.color = '#ff9b9b';
+        out.textContent = 'กรุณากรอกข้อมูลให้ครบ';
+        return;
+      }
+      out.style.color = '#c9ffd7';
+      out.textContent = 'ขอบคุณ! ข้อมูลถูกส่งแล้ว ทางแผนกจะติดต่อกลับ';
+      this.reset();
+    });
+
+    // placeholder open LINE (replace URL with actual Line link)
+    function openLine(){
+      window.open('https://line.me/', '_blank');
+    }
+
+    // reveal animations on scroll (small and simple)
+    (function(){
+      const reveals = document.querySelectorAll('.reveal');
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{
+          if(e.isIntersecting){
+            e.target.style.opacity = 1;
+            e.target.style.transform = 'none';
+            e.target.classList.remove('reveal');
+          }
+        });
+      },{threshold:0.08});
+      reveals.forEach(r=>io.observe(r));
+    })();
+  </script>
+</body>
+</html>

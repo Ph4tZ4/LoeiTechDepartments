@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>แผนกอิเล็กทรอนิกส์ — วิทยาลัยเทคนิคเลย</title>
+  <meta name="description" content="Landing page แผนกอิเล็กทรอนิกส์ วิทยาลัยเทคนิคเลย — สร้างนวัตกรรมด้วยไมโครคอนโทรลเลอร์ IoT และระบบอัจฉริยะ ธีมสีม่วงลึกลับ">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --purple:#7b2bf9;
+      --purple-light:#a855f7;
+      --purple-dark:#581c87;
+      --purple-glow:rgba(123, 43, 249, 0.3);
+      --bg:#0a0612;
+      --panel:#120d1f;
+      --muted:#a78bfa;
+      --white:#f3e8ff;
+      --border:rgba(123, 43, 249, 0.2);
+      --max-w:1180px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:'Kanit', 'JetBrains Mono', system-ui, -apple-system, sans-serif;
+      background:linear-gradient(180deg, #080412 0%, #0f0820 100%);
+      color:var(--white);
+      -webkit-font-smoothing:antialiased;
+      overflow-x:hidden;
+    }
+    /* Digital circuit pattern */
+    .circuit-pattern{
+      position:fixed;inset:0;pointer-events:none;opacity:0.1;z-index:0;
+      background-image: 
+        radial-gradient(circle at 25% 25%, rgba(123, 43, 249, 0.1) 2px, transparent 2px),
+        radial-gradient(circle at 75% 75%, rgba(123, 43, 249, 0.1) 2px, transparent 2px);
+      background-size:60px 60px;
+      animation:float 20s ease-in-out infinite;
+    }
+    @keyframes float{0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)}}
+
+    .wrap{position:relative;max-width:var(--max-w);margin:0 auto;padding:32px 24px;z-index:1}
+    
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{
+      width:60px;height:60px;border-radius:12px;
+      background:linear-gradient(135deg, var(--purple), var(--purple-dark));
+      color:#fff;font-weight:700;font-family:'JetBrains Mono';display:flex;align-items:center;justify-content:center;
+      box-shadow:0 0 25px var(--purple-glow);border:1px solid rgba(255,255,255,0.15);
+      position:relative;overflow:hidden;
+    }
+    .logo::before{
+      content:'';position:absolute;inset:0;background:radial-gradient(circle, rgba(255,255,255,0.1), transparent);
+      animation:pulse 3s ease-in-out infinite;
+    }
+    .brand h1{margin:0;font-size:20px;letter-spacing:0.5px}
+    nav{display:flex;gap:16px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;font-weight:600;transition:color .2s}
+    nav a:hover{color:var(--purple)}
+    .cta{
+      padding:10px 20px;border-radius:6px;background:transparent;
+      border:1px solid var(--purple);color:var(--purple);
+      text-decoration:none;font-weight:700;transition:all .2s;
+      box-shadow:0 0 10px rgba(123,43,249,0.2);
+    }
+    .cta:hover{background:var(--purple);color:#0a0612;box-shadow:0 0 20px var(--purple-glow)}
+
+    /* HERO */
+    main.hero{
+      display:grid;grid-template-columns:1fr 440px;gap:40px;align-items:center;
+      padding:60px 0 40px;
+    }
+    .badge{
+      display:inline-block;padding:4px 12px;border-radius:4px;
+      background:rgba(123, 43, 249, 0.1);color:var(--purple);
+      font-family:'JetBrains Mono';font-weight:600;font-size:14px;border:1px solid rgba(123, 43, 249, 0.2);
+    }
+    .hero h2{
+      font-family:'JetBrains Mono';font-size:48px;margin:20px 0 16px;line-height:1.1;
+      background:linear-gradient(90deg, #fff, var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+    }
+    .hero p{color:var(--muted);font-size:16px;line-height:1.6;margin:0 0 24px;max-width:540px}
+    .actions{display:flex;gap:14px}
+    .btn-solid{
+      padding:12px 24px;border-radius:6px;background:var(--purple);color:#0a0612;
+      text-decoration:none;font-weight:800;font-family:'JetBrains Mono';
+      box-shadow:0 0 25px var(--purple-glow);transition:transform .2s;
+    }
+    .btn-solid:hover{transform:translateY(-2px)}
+    
+    .hero-visual{
+      position:relative;border-radius:16px;overflow:hidden;
+      box-shadow:0 20px 50px rgba(0,0,0,0.5);border:1px solid var(--border);
+    }
+    .hero-visual img{width:100%;height:400px;object-fit:cover;display:block;filter:brightness(0.9) contrast(1.1)}
+    .hero-overlay{
+      position:absolute;inset:0;background:linear-gradient(0deg, rgba(10,6,18,0.9), transparent 60%);
+      display:flex;flex-direction:column;justify-content:flex-end;padding:20px;
+    }
+    .data-stream{
+      position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg, transparent, var(--purple), transparent);
+      animation:scan 4s linear infinite;
+    }
+    @keyframes scan{0%{transform:translateX(-100%)} 100%{transform:translateX(100%)}}
+
+    /* SECTIONS */
+    section{padding:40px 0;border-top:1px solid rgba(255,255,255,0.03)}
+    .section-head{margin-bottom:24px}
+    .section-head h3{font-family:'JetBrains Mono';font-size:28px;margin:0 0 8px;color:var(--white)}
+    .section-head p{color:var(--muted);margin:0}
+
+    /* GRID & CARDS */
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .card{
+      background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:20px;
+      transition:transform .2s, border-color .2s;position:relative;overflow:hidden;
+    }
+    .card:hover{transform:translateY(-4px);border-color:var(--purple)}
+    .card::before{
+      content:'';position:absolute;top:0;left:0;width:100%;height:2px;
+      background:linear-gradient(90deg, transparent, var(--purple), transparent);
+      opacity:0;transition:opacity .3s;
+    }
+    .card:hover::before{opacity:1}
+    .card h4{margin:0 0 10px;font-size:18px;color:var(--purple)}
+    .card p{margin:0;color:var(--muted);font-size:14px;line-height:1.5}
+    .icon-box{
+      width:40px;height:40px;background:rgba(123, 43, 249, 0.1);border-radius:8px;
+      display:flex;align-items:center;justify-content:center;margin-bottom:14px;color:var(--purple);
+      border:1px solid rgba(123, 43, 249, 0.2);
+    }
+
+    /* CURRICULUM */
+    .tech-path{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:24px}
+    .tech-item{
+      text-align:center;padding:16px;background:rgba(255,255,255,0.02);border-radius:10px;
+      border:1px solid rgba(123, 43, 249, 0.1);position:relative;
+    }
+    .tech-item:hover{background:rgba(123, 43, 249, 0.05);border-color:var(--purple)}
+    .tech-num{font-family:'JetBrains Mono';font-size:24px;font-weight:700;color:var(--purple);margin-bottom:8px}
+    .tech-title{font-size:14px;color:var(--white);font-weight:600;margin-bottom:4px}
+    .tech-desc{font-size:12px;color:var(--muted)}
+    
+    /* LAB GALLERY */
+    .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    .gallery-item{height:160px;border-radius:8px;overflow:hidden;position:relative;border:1px solid rgba(255,255,255,0.1)}
+    .gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+    .gallery-item:hover img{transform:scale(1.1)}
+    .gallery-overlay{
+      position:absolute;inset:0;background:linear-gradient(135deg, rgba(123,43,249,0.8), rgba(88,28,135,0.8));
+      display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;
+      opacity:0;transition:opacity .3s;
+    }
+    .gallery-item:hover .gallery-overlay{opacity:1}
+
+    /* PROJECTS */
+    .projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+    .project-card{background:var(--panel);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+    .project-img{height:120px;overflow:hidden}
+    .project-img img{width:100%;height:100%;object-fit:cover}
+    .project-content{padding:16px}
+    .project-content h4{margin:0 0 8px;color:var(--purple)}
+    .project-content p{margin:0;color:var(--muted);font-size:13px}
+
+    /* CONTACT */
+    .contact-container{display:grid;grid-template-columns:2fr 1fr;gap:24px}
+    .form-box{background:var(--panel);padding:24px;border-radius:12px;border:1px solid var(--border)}
+    form label{display:block;color:var(--muted);font-size:13px;margin-bottom:6px}
+    form input, form textarea{
+      width:100%;background:#080412;border:1px solid #2d1b4e;color:#fff;padding:12px;border-radius:6px;
+      font-family:inherit;margin-bottom:16px;
+    }
+    form input:focus, form textarea:focus{outline:none;border-color:var(--purple);box-shadow:0 0 8px rgba(123,43,249,0.2)}
+    button.submit-btn{
+      width:100%;padding:12px;background:var(--purple);color:#0a0612;border:none;border-radius:6px;
+      font-weight:800;font-family:'JetBrains Mono';cursor:pointer;
+    }
+
+    footer{
+      padding:32px 0;margin-top:40px;border-top:1px solid rgba(255,255,255,0.05);
+      text-align:center;color:var(--muted);font-size:14px;
+    }
+
+    @media (max-width:900px){
+      main.hero{grid-template-columns:1fr;text-align:center}
+      .hero h2{font-size:36px}
+      .actions{justify-content:center}
+      .hero-visual{display:none}
+      .grid-3, .gallery-grid, .contact-container, .projects-grid{grid-template-columns:1fr}
+      .tech-path{grid-template-columns:repeat(2,1fr)}
+      nav{display:none}
+    }
+  </style>
+</head>
+<body>
+  <div class="circuit-pattern"></div>
+
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo">อศ</div>
+        <div>
+          <h1>แผนกอิเล็กทรอนิกส์</h1>
+          <div style="font-size:12px;color:var(--purple);opacity:0.8">Electronics & IoT</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#about">เกี่ยวกับ</a>
+        <a href="#tech">เทคโนโลยี</a>
+        <a href="#lab">ห้องปฏิบัติ</a>
+        <a href="#contact" class="cta">สมัครเรียน</a>
+      </nav>
+    </header>
+
+    <main class="hero">
+      <div>
+        <div class="badge">IoT & Smart Systems</div>
+        <h2>สร้างอนาคต<br>ด้วยอิเล็กทรอนิกส์</h2>
+        <p>พัฒนาทักษะการออกแบบวงจรอิเล็กทรอนิกส์ ไมโครคอนโทรลเลอร์ Arduino/Raspberry Pi IoT และระบบอัจฉริยะสำหรับยุคดิจิทัล</p>
+        <div class="actions">
+          <a href="#contact" class="btn-solid">สมัครเรียนทันที</a>
+          <a href="#tech" style="display:flex;align-items:center;color:var(--white);text-decoration:none;font-weight:600">
+            ดูเทคโนโลยี <span style="margin-left:8px">→</span>
+          </a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="data-stream"></div>
+        <img src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?auto=format&fit=crop&w=1000&q=80" alt="Electronics Lab">
+        <div class="hero-overlay">
+          <div>
+            <strong style="color:var(--white);font-family:'JetBrains Mono'">LAB EQUIPMENT</strong>
+            <div style="font-size:13px;color:var(--purple)">Oscilloscope • Multimeter • PCB</div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <section id="about">
+      <div class="section-head">
+        <h3>ทำไมต้องเรียนอิเล็กทรอนิกส์?</h3>
+        <p>สาขาที่ขาดแคลนสูงในยุค Industry 4.0</p>
+      </div>
+      <div class="grid-3">
+        <div class="card">
+          <div class="icon-box">🔧</div>
+          <h4>ออกแบบวงจร</h4>
+          <p>เรียนรู้การออกแบบและสร้าง PCB วงจรอิเล็กทรอนิกส์ตั้งแต่พื้นฐานจนถึงขั้นสูง</p>
+        </div>
+        <div class="card">
+          <div class="icon-box">🤖</div>
+          <h4>ไมโครคอนโทรลเลอร์</h4>
+          <p>พัฒนาโปรเจกต์ด้วย Arduino, ESP32, Raspberry Pi และการเขียนโค้ดควบคุมอุปกรณ์</p>
+        </div>
+        <div class="card">
+          <div class="icon-box">📡</div>
+          <h4>IoT & สมาร์ท</h4>
+          <p>เชื่อมต่ออุปกรณ์เข้าด้วยกัน ระบบเซ็นเซอร์ วัดค่า และส่งข้อมูลผ่านอินเทอร์เน็ต</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="tech">
+      <div class="grid-3" style="grid-template-columns:1fr 1fr;gap:40px">
+        <div>
+          <div class="section-head">
+            <h3>เส้นทางการเรียนรู้</h3>
+            <p>พัฒนาทักษะจากพื้นฐานสู่ผู้เชี่ยวชาญ</p>
+          </div>
+          <div class="tech-path">
+            <div class="tech-item">
+              <div class="tech-num">01</div>
+              <div class="tech-title">Basic Electronics</div>
+              <div class="tech-desc">วงจรไฟฟ้า, คอมโพเนนต์, เครื่องมือวัด</div>
+            </div>
+            <div class="tech-item">
+              <div class="tech-num">02</div>
+              <div class="tech-title">Digital Logic</div>
+              <div class="tech-desc">ลอจิกเกต, ไมโครคอนโทรลเลอร์, การเขียนโค้ด</div>
+            </div>
+            <div class="tech-item">
+              <div class="tech-num">03</div>
+              <div class="tech-title">IoT Systems</div>
+              <div class="tech-desc">เซ็นเซอร์, การสื่อสารไร้สาย, Cloud Platform</div>
+            </div>
+            <div class="tech-item">
+              <div class="tech-num">04</div>
+              <div class="tech-title">Smart Projects</div>
+              <div class="tech-desc">โปรเจกต์อัจฉริยะ, การออกแบบ PCB, การนำไปใช้จริง</div>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="display:flex;flex-direction:column;justify-content:center;text-align:center;border-color:var(--purple)">
+          <div style="font-size:48px;color:var(--purple);font-family:'JetBrains Mono';font-weight:700">95%</div>
+          <div style="margin-bottom:20px;color:var(--white)">บัณฑิตมีงานทำทันที</div>
+          <div style="background:rgba(255,255,255,0.05);padding:12px;border-radius:8px;margin-bottom:8px">
+            <strong style="display:block;color:var(--purple)">Microsoft Imagine Cup</strong>
+            <span style="font-size:12px;color:var(--muted)">นักศึกษาชนะการแข่งขันนวัตกรรมระดับชาติ</span>
+          </div>
+          <div style="background:rgba(255,255,255,0.05);padding:12px;border-radius:8px">
+            <strong style="display:block;color:var(--purple)">โครงการ Startup</strong>
+            <span style="font-size:12px;color:var(--muted)">สนับสนุนนักศึกษาสร้างธุรกิจ IoT</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="lab">
+      <div class="section-head">
+        <h3>ห้องปฏิบัติการสมัยใหม่</h3>
+        <p>อุปกรณ์ครบครันสำหรับพัฒนาโปรเจกต์อิเล็กทรอนิกส์</p>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?auto=format&fit=crop&w=600&q=60" alt="PCB Design">
+          <div class="gallery-overlay">PCB Design Lab</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1581092334651-ddf26f9a09d0?auto=format&fit=crop&w=600&q=60" alt="Arduino">
+          <div class="gallery-overlay">Arduino Workshop</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=600&q=60" alt="IoT Devices">
+          <div class="gallery-overlay">IoT Prototyping</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1562408590-e32931084e23?auto=format&fit=crop&w=600&q=60" alt="Soldering">
+          <div class="gallery-overlay">Soldering Station</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <h3>ผลงานนักศึกษา</h3>
+        <p>โปรเจกต์นวัตกรรมจากห้องปฏิบัติการ</p>
+      </div>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-img">
+            <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=600&q=60" alt="Smart Home">
+          </div>
+          <div class="project-content">
+            <h4>Smart Home Automation</h4>
+            <p>ระบบควบคุมบ้านอัจฉริยะด้วยแอปพลิเคชันมือถือ เชื่อมต่อ IoT ควบคุมไฟฟ้าและอุปกรณ์ต่างๆ</p>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-img">
+            <img src="https://images.unsplash.com/photo-1581092334651-ddf26f9a09d0?auto=format&fit=crop&w=600&q=60" alt="Weather Station">
+          </div>
+          <div class="project-content">
+            <h4>Weather Monitoring Station</h4>
+            <p>สถานีวัดสภาพอากาศอัตโนมัติ ส่งข้อมูลผ่านอินเทอร์เน็ต แสดงผลบน Dashboard</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="section-head">
+        <h3>สมัครเรียน / ติดต่อเรา</h3>
+      </div>
+      <div class="contact-container">
+        <div class="form-box">
+          <form id="contactForm">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+              <div>
+                <label>ชื่อ-นามสกุล</label>
+                <input type="text" id="name" required placeholder="ชื่อของคุณ">
+              </div>
+              <div>
+                <label>เบอร์โทรศัพท์</label>
+                <input type="tel" id="phone" required placeholder="0XX-XXX-XXXX">
+              </div>
+            </div>
+            <label>ข้อความ / คำถาม</label>
+            <textarea id="msg" rows="4" placeholder="สอบถามเกี่ยวกับหลักสูตร IoT..."></textarea>
+            <button type="submit" class="submit-btn">ส่งข้อความ</button>
+            <div id="status" style="margin-top:12px;font-size:14px"></div>
+          </form>
+        </div>
+        <div>
+          <div class="card" style="height:100%">
+            <h4>ข้อมูลติดต่อ</h4>
+            <p style="margin-bottom:12px"><strong>วิทยาลัยเทคนิคเลย</strong><br>แผนกอิเล็กทรอนิกส์ อาคาร 5</p>
+            <p style="margin-bottom:12px"><strong>โทร:</strong> 042-811-XXX</p>
+            <p style="margin-bottom:12px"><strong>Facebook:</strong><br><a href="#" style="color:var(--purple)">แผนกอิเล็กทรอนิกส์ เทคนิคเลย</a></p>
+            <hr style="border:0;border-top:1px solid rgba(255,255,255,0.1);margin:16px 0">
+            <p style="font-size:12px;color:var(--muted)">รับสมัครนักศึกษาปวช. และ ปวส. ทุกปีการศึกษา พร้อมทุนการศึกษา IoT</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © 2024 แผนกอิเล็กทรอนิกส์ วิทยาลัยเทคนิคเลย<br>
+      <span style="font-size:12px;opacity:0.6">Building Tomorrow's Technology</span>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const n = document.getElementById('name').value;
+      const p = document.getElementById('phone').value;
+      const s = document.getElementById('status');
+      
+      if(n && p){
+        s.style.color = 'var(--purple)';
+        s.textContent = 'ขอบคุณ! เราได้รับข้อมูลของคุณแล้ว เจ้าหน้าที่จะติดต่อกลับเร็วๆ นี้';
+        this.reset();
+      } else {
+        s.style.color = '#ff4d4d';
+        s.textContent = 'กรุณากรอกข้อมูลให้ครบถ้วน';
+      }
+    });
+  </script>
+</body>
+</html>
